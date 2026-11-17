@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Informativa sulla Privacy – Un Passo</title>
+  <title>Informativa sulla Privacy / Privacy Policy – Un Passo</title>
   <style>
     :root {
       --bg: #fafafa;
@@ -28,6 +28,34 @@
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 32px 28px;
+    }
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .lang-switch {
+      display: inline-flex;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--bg);
+    }
+    .lang-switch button {
+      border: none;
+      background: transparent;
+      padding: 6px 14px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .lang-switch button.active {
+      background: var(--accent);
+      color: #ffffff;
     }
     h1 {
       font-size: 1.75rem;
@@ -66,86 +94,211 @@
       border-radius: 6px;
       margin: 16px 0;
     }
+    .hidden {
+      display: none;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Informativa sulla Privacy – Un Passo</h1>
-    <p class="updated">Ultimo aggiornamento: Novembre 2026</p>
-
-    <div class="box">
-      <strong>In sintesi:</strong> Un Passo adotta un'architettura <em>Local-First</em>. Non richiede registrazione, non utilizza server proprietari per archiviare i tuoi contenuti personali, non contiene pubblicità e non effettua profilazione o tracciamento. Tutti i tuoi dati personali restano salvati esclusivamente nella memoria privata del tuo dispositivo.
+    <div class="header-top">
+      <div>
+        <h1 id="page-title">Informativa sulla Privacy – Un Passo</h1>
+        <p class="updated" id="page-updated">Ultimo aggiornamento: Novembre 2026</p>
+      </div>
+      <div class="lang-switch" role="group" aria-label="Language selector">
+        <button type="button" id="btn-it" class="active" onclick="setLang('it')">Italiano</button>
+        <button type="button" id="btn-en" onclick="setLang('en')">English</button>
+      </div>
     </div>
 
-    <h2>1. Titolare del trattamento e contatti</h2>
-    <p>
-      <strong>Un Passo</strong> è un'applicazione Android indipendente.<br />
-      Per qualsiasi domanda, richiesta di chiarimento o segnalazione relativa alla privacy, puoi contattare lo sviluppatore all'indirizzo email:
-      <a href="mailto:unpasso.app@gmail.com">unpasso.app@gmail.com</a>.
-    </p>
+    <!-- VERSIONE ITALIANA -->
+    <div id="content-it">
+      <div class="box">
+        <strong>In sintesi:</strong> Un Passo adotta un'architettura <em>Local-First</em>. Non richiede registrazione, non utilizza server proprietari per archiviare i tuoi contenuti personali, non contiene pubblicità e non effettua profilazione o tracciamento. Tutti i tuoi dati personali restano salvati esclusivamente nella memoria privata del tuo dispositivo.
+      </div>
 
-    <h2>2. Dati trattati e archiviazione locale</h2>
-    <p>
-      L'applicazione non dispone di un database cloud né di account utente. I seguenti dati vengono salvati <strong>unicamente nella memoria interna privata del tuo dispositivo</strong> (database locale SQLite/Room e preferenze locali Android, con backup cloud di sistema disabilitato):
-    </p>
-    <ul>
-      <li><strong>Monitoraggio dell'umore:</strong> stati d'animo e annotazioni inseriti per mostrarti i tuoi progressi nel tempo.</li>
-      <li><strong>Diario personale:</strong> testi e riflessioni scritti all'interno dell'app.</li>
-      <li><strong>Ricordi e fotografie:</strong> immagini selezionate dalla tua galleria tramite il selettore di sistema Android e relativi metadati/album.</li>
-      <li><strong>Contatti di fiducia:</strong> nominativi, numeri di telefono e grado di relazione inseriti manualmente o importati singolarmente dalla rubrica su tua esplicita scelta.</li>
-      <li><strong>Piani futuri ed eventi salvati:</strong> obiettivi, attività pianificate ed eventi locali salvati da te nell'app.</li>
-      <li><strong>Conversazioni con l'assistente AI (100% On-Device):</strong> l'assistente utilizza il modello Gemma eseguito interamente in locale sul processore del tuo telefono tramite runtime LiteRT-LM. Nessun messaggio, prompt, voce del diario o dato sull'umore viene inviato a server esterni.</li>
-      <li><strong>Preferenze dell'app:</strong> impostazioni di tema, interessi/generi preferiti e pianificazione dei promemoria locali.</li>
-    </ul>
+      <h2>1. Titolare del trattamento e contatti</h2>
+      <p>
+        <strong>Un Passo</strong> è un'applicazione Android indipendente.<br />
+        Per qualsiasi domanda, richiesta di chiarimento o segnalazione relativa alla privacy, puoi contattare lo sviluppatore all'indirizzo email:
+        <a href="mailto:unpasso.app@gmail.com">unpasso.app@gmail.com</a>.
+      </p>
 
-    <h2>3. Permessi del dispositivo richiesti</h2>
-    <p>L'app richiede esclusivamente i permessi necessari alle singole funzionalità, attivati solo su tua autorizzazione:</p>
-    <ul>
-      <li><strong>Posizione approssimativa e precisa (<code>ACCESS_COARSE_LOCATION</code>, <code>ACCESS_FINE_LOCATION</code>):</strong> utilizzata opzionalmente nella sezione "Scopri" per ricavare localmente (tramite Geocoder del dispositivo) il nome della tua città e cercare eventi nelle vicinanze. Le coordinate GPS non vengono salvate né trasmesse a server esterni: viene inviato unicamente il nome della città.</li>
-      <li><strong>Contatti (<code>READ_CONTACTS</code>):</strong> utilizzata esclusivamente quando premi "Scegli da rubrica" per importare nome e numero di telefono del singolo contatto da te selezionato tramite il selettore di sistema Android. L'intera rubrica non viene mai letta in background né inviata esternamente.</li>
-      <li><strong>Notifiche e sveglie/promemoria (<code>POST_NOTIFICATIONS</code>, <code>SCHEDULE_EXACT_ALARM</code>, <code>RECEIVE_BOOT_COMPLETED</code>):</strong> utilizzati per inviare promemoria locali programmati da te e ripristinarli dopo il riavvio del dispositivo.</li>
-      <li><strong>Accesso a Internet e servizi in foreground (<code>INTERNET</code>, <code>FOREGROUND_SERVICE_DATA_SYNC</code>):</strong> utilizzati per scaricare il modello AI sul dispositivo e recuperare contenuti culturali/informativi esterni.</li>
-    </ul>
+      <h2>2. Dati trattati e archiviazione locale</h2>
+      <p>
+        L'applicazione non dispone di un database cloud né di account utente. I seguenti dati vengono salvati <strong>unicamente nella memoria interna privata del tuo dispositivo</strong> (database locale SQLite/Room e preferenze locali Android, con backup cloud di sistema disabilitato):
+      </p>
+      <ul>
+        <li><strong>Monitoraggio dell'umore:</strong> stati d'animo e annotazioni inseriti per mostrarti i tuoi progressi nel tempo.</li>
+        <li><strong>Spazio personale e riflessioni:</strong> testi e annotazioni scritti all'interno dell'app.</li>
+        <li><strong>Ricordi e fotografie:</strong> immagini selezionate dalla tua galleria tramite il selettore di sistema Android e relativi metadati/album.</li>
+        <li><strong>Contatti di fiducia:</strong> nominativi, numeri di telefono e grado di relazione inseriti manualmente o importati singolarmente dalla rubrica su tua esplicita scelta.</li>
+        <li><strong>Piani futuri ed eventi salvati:</strong> obiettivi, attività pianificate ed eventi locali salvati da te nell'app.</li>
+        <li><strong>Conversazioni con l'assistente AI (100% On-Device):</strong> l'assistente utilizza il modello Gemma eseguito interamente in locale sul processore del tuo telefono tramite runtime LiteRT-LM. Nessun messaggio, prompt, nota o dato sull'umore viene inviato a server esterni.</li>
+        <li><strong>Preferenze dell'app:</strong> impostazioni di tema, interessi/generi preferiti e pianificazione dei promemoria locali.</li>
+      </ul>
 
-    <h2>4. Servizi di terze parti e infrastruttura proxy</h2>
-    <p>
-      Sebbene Un Passo non trasmetta mai i tuoi contenuti personali (diario, umore, foto, chat AI o contatti) a server esterni, l'app effettua richieste di rete cifrate (HTTPS) tramite server proxy stateless (Cloudflare Workers, che utilizzano cache temporanea esclusivamente per risposte pubbliche aggregate prive di dati utente) e API pubbliche per fornire funzionalità accessorie. Durante tali richieste vengono trattati dati tecnici temporanei necessari alla connessione (quali l'indirizzo IP):
-    </p>
-    <ul>
-      <li><strong>Download modello AI (Cloudflare R2 / Workers):</strong> utilizzato esclusivamente su tua richiesta per scaricare in locale i file del modello di intelligenza artificiale sul dispositivo (<a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">Privacy Policy di Cloudflare</a>).</li>
-      <li><strong>Eventi locali (Ticketmaster API tramite proxy):</strong> riceve esclusivamente il nome della città (es. "Roma") per restituire gli eventi in programma (<a href="https://privacy.ticketmaster.com/" target="_blank" rel="noopener noreferrer">Privacy Policy di Ticketmaster</a>).</li>
-      <li><strong>Scoperta musicale (YouTube Data API e Last.fm API tramite proxy):</strong> ricevono esclusivamente i generi musicali o il nome dell'artista cercato e la data corrente per suggerire brani e playlist (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy di Google</a>; <a href="https://www.last.fm/legal/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy di Last.fm</a>).</li>
-      <li><strong>Immagine del giorno (Unsplash API tramite proxy):</strong> riceve esclusivamente un tema generico di ricerca e la data corrente per mostrare un'immagine ispirazionale (<a href="https://unsplash.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy di Unsplash</a>).</li>
-      <li><strong>Curiosità del giorno (Wikimedia / Wikipedia API):</strong> riceve esclusivamente il giorno e il mese correnti per mostrare un fatto storico del giorno (<a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" target="_blank" rel="noopener noreferrer">Privacy Policy di Wikimedia</a>).</li>
-    </ul>
-    <p>
-      Quando avvii una chiamata verso un contatto di fiducia o condividi un'immagine, l'app utilizza gli strumenti standard di sistema Android (dialer telefonico o menu di condivisione).
-    </p>
+      <h2>3. Permessi del dispositivo richiesti</h2>
+      <p>L'app richiede esclusivamente i permessi necessari alle singole funzionalità, attivati solo su tua autorizzazione:</p>
+      <ul>
+        <li><strong>Posizione approssimativa e precisa (<code>ACCESS_COARSE_LOCATION</code>, <code>ACCESS_FINE_LOCATION</code>):</strong> utilizzata opzionalmente nella sezione "Scopri" per ricavare localmente (tramite Geocoder del dispositivo) il nome della tua città e cercare eventi nelle vicinanze. Le coordinate GPS non vengono salvate né trasmesse a server esterni: viene inviato unicamente il nome della città.</li>
+        <li><strong>Contatti (<code>READ_CONTACTS</code>):</strong> utilizzata esclusivamente quando premi "Scegli da rubrica" per importare nome e numero di telefono del singolo contatto da te selezionato tramite il selettore di sistema Android. L'intera rubrica non viene mai letta in background né inviata esternamente.</li>
+        <li><strong>Notifiche e sveglie/promemoria (<code>POST_NOTIFICATIONS</code>, <code>SCHEDULE_EXACT_ALARM</code>, <code>RECEIVE_BOOT_COMPLETED</code>):</strong> utilizzati per inviare promemoria locali programmati da te e ripristinarli dopo il riavvio del dispositivo.</li>
+        <li><strong>Accesso a Internet e servizi in foreground (<code>INTERNET</code>, <code>FOREGROUND_SERVICE_DATA_SYNC</code>):</strong> utilizzati per scaricare il modello AI sul dispositivo e recuperare contenuti culturali/informativi esterni.</li>
+      </ul>
 
-    <h2>5. Assenza di pubblicità, analytics e profilazione</h2>
-    <p>
-      Un Passo <strong>non vende</strong> né cede a terzi alcun dato utente. L'applicazione non integra SDK pubblicitari (es. AdMob), non legge identificativi pubblicitari (Advertising ID) e non utilizza strumenti di tracciamento comportamentale, analytics o crash reporting di terze parti.
-    </p>
+      <h2>4. Servizi di terze parti e infrastruttura proxy</h2>
+      <p>
+        Sebbene Un Passo non trasmetta mai i tuoi contenuti personali (riflessioni, umore, foto, chat AI o contatti) a server esterni, l'app effettua richieste di rete cifrate (HTTPS) tramite server proxy stateless (Cloudflare Workers, che utilizzano cache temporanea esclusivamente per risposte pubbliche aggregate prive di dati utente) e API pubbliche per fornire funzionalità accessorie. Durante tali richieste vengono trattati dati tecnici temporanei necessari alla connessione (quali l'indirizzo IP):
+      </p>
+      <ul>
+        <li><strong>Download modello AI (Cloudflare R2 / Workers):</strong> utilizzato esclusivamente su tua richiesta per scaricare in locale i file del modello di intelligenza artificiale sul dispositivo (<a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">Privacy Policy di Cloudflare</a>).</li>
+        <li><strong>Eventi locali (Ticketmaster API tramite proxy):</strong> riceve esclusivamente il nome della città (es. "Roma") per restituire gli eventi in programma (<a href="https://privacy.ticketmaster.com/" target="_blank" rel="noopener noreferrer">Privacy Policy di Ticketmaster</a>).</li>
+        <li><strong>Scoperta musicale (YouTube Data API e Last.fm API tramite proxy):</strong> ricevono esclusivamente i generi musicali o il nome dell'artista cercato e la data corrente per suggerire brani e playlist (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy di Google</a>; <a href="https://www.last.fm/legal/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy di Last.fm</a>).</li>
+        <li><strong>Immagine del giorno (Unsplash API tramite proxy):</strong> riceve esclusivamente un tema generico di ricerca e la data corrente per mostrare un'immagine ispirazionale (<a href="https://unsplash.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy di Unsplash</a>).</li>
+        <li><strong>Curiosità del giorno (Wikimedia / Wikipedia API):</strong> riceve esclusivamente il giorno e il mese correnti per mostrare un fatto storico del giorno (<a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" target="_blank" rel="noopener noreferrer">Privacy Policy di Wikimedia</a>).</li>
+      </ul>
+      <p>
+        Quando avvii una chiamata verso un contatto di fiducia o condividi un'immagine, l'app utilizza gli strumenti standard di sistema Android (dialer telefonico o menu di condivisione).
+      </p>
 
-    <h2>6. Conservazione e cancellazione dei dati</h2>
-    <p>
-      Tutti i dati sono conservati esclusivamente sul tuo dispositivo fino a quando decidi di eliminarli. Puoi cancellare i tuoi dati in qualsiasi momento:
-    </p>
-    <ul>
-      <li>Eliminando singoli elementi (voci del diario, ricordi, contatti di fiducia, piani futuri, eventi salvati) direttamente dall'app.</li>
-      <li>Rimuovendo il modello AI scaricato dalle Impostazioni dell'app (<em>"Rimuovi modello AI"</em>).</li>
-      <li>Cancellando tutti i dati dell'app dalle impostazioni di sistema Android (<em>Impostazioni &gt; App &gt; Un Passo &gt; Archiviazione &gt; Cancella dati</em>) oppure disinstallando l'applicazione, operazione che rimuove definitivamente ogni file locale.</li>
-    </ul>
+      <h2>5. Assenza di pubblicità, analytics e profilazione</h2>
+      <p>
+        Un Passo <strong>non vende</strong> né cede a terzi alcun dato utente. L'applicazione non integra SDK pubblicitari (es. AdMob), non legge identificativi pubblicitari (Advertising ID) e non utilizza strumenti di tracciamento comportamentale, analytics o crash reporting di terze parti.
+      </p>
 
-    <h2>7. Privacy dei minori</h2>
-    <p>
-      L'applicazione non è destinata a minori di 13 anni (o all'età minima prevista dalla normativa applicabile nel proprio Paese) e non raccoglie consapevolmente dati personali di minori.
-    </p>
+      <h2>6. Conservazione e cancellazione dei dati</h2>
+      <p>
+        Tutti i dati sono conservati esclusivamente sul tuo dispositivo fino a quando decidi di eliminarli. Puoi cancellare i tuoi dati in qualsiasi momento:
+      </p>
+      <ul>
+        <li>Eliminando singoli elementi (riflessioni, ricordi, contatti di fiducia, piani futuri, eventi salvati) direttamente dall'app.</li>
+        <li>Rimuovendo il modello AI scaricato dalle Impostazioni dell'app (<em>"Rimuovi modello AI"</em>).</li>
+        <li>Cancellando tutti i dati dell'app dalle impostazioni di sistema Android (<em>Impostazioni > App > Un Passo > Archiviazione > Cancella dati</em>) oppure disinstallando l'applicazione, operazione che rimuove definitivamente ogni file locale.</li>
+      </ul>
 
-    <h2>8. Modifiche alla presente informativa</h2>
-    <p>
-      Eventuali aggiornamenti a questa Informativa sulla Privacy saranno pubblicati su questa pagina con l'indicazione della data di ultimo aggiornamento.
-    </p>
+      <h2>7. Privacy dei minori</h2>
+      <p>
+        L'applicazione non è destinata a minori di 13 anni (o all'età minima prevista dalla normativa applicabile nel proprio Paese) e non raccoglie consapevolmente dati personali di minori.
+      </p>
+
+      <h2>8. Modifiche alla presente informativa</h2>
+      <p>
+        Eventuali aggiornamenti a questa Informativa sulla Privacy saranno pubblicati su questa pagina con l'indicazione della data di ultimo aggiornamento.
+      </p>
+    </div>
+
+    <!-- ENGLISH VERSION -->
+    <div id="content-en" class="hidden">
+      <div class="box">
+        <strong>In short:</strong> Un Passo adopts a <em>Local-First</em> architecture. It requires no registration, uses no proprietary servers to store your personal content, contains no ads, and performs no profiling or tracking. All your personal data remains stored exclusively in your device's private storage.
+      </div>
+
+      <h2>1. Data Controller and Contact Information</h2>
+      <p>
+        <strong>Un Passo</strong> is an independent Android application.<br />
+        For any questions, requests for clarification, or privacy-related inquiries, you can contact the developer at:
+        <a href="mailto:unpasso.app@gmail.com">unpasso.app@gmail.com</a>.
+      </p>
+
+      <h2>2. Processed Data and Local Storage</h2>
+      <p>
+        The application does not use a cloud database or user accounts. The following data is stored <strong>exclusively in the private internal memory of your device</strong> (local SQLite/Room database and local Android preferences, with system cloud backup disabled):
+      </p>
+      <ul>
+        <li><strong>Mood tracking:</strong> moods and notes entered to display your personal progress over time.</li>
+        <li><strong>Personal space and reflections:</strong> texts and notes written within the app.</li>
+        <li><strong>Memories and photos:</strong> images selected from your gallery via the Android system picker and their associated metadata/albums.</li>
+        <li><strong>Trusted contacts:</strong> names, phone numbers, and relationship types entered manually or imported individually from your address book upon your explicit action.</li>
+        <li><strong>Future plans and saved events:</strong> goals, scheduled activities, and local events saved by you in the app.</li>
+        <li><strong>AI Assistant conversations (100% On-Device):</strong> the assistant uses the Gemma model running entirely locally on your phone's processor via the LiteRT-LM runtime. No messages, prompts, notes, or mood entries are ever sent to external servers.</li>
+        <li><strong>App preferences:</strong> theme settings, preferred interests/genres, and local reminder schedules.</li>
+      </ul>
+
+      <h2>3. Requested Device Permissions</h2>
+      <p>The app requests only the permissions strictly required for specific features, activated solely upon your authorization:</p>
+      <ul>
+        <li><strong>Approximate and precise location (<code>ACCESS_COARSE_LOCATION</code>, <code>ACCESS_FINE_LOCATION</code>):</strong> optionally used in the "Discover" section to locally determine (via the device's Geocoder) the name of your city and search for nearby events. GPS coordinates are neither saved nor transmitted to external servers: only the city name is sent.</li>
+        <li><strong>Contacts (<code>READ_CONTACTS</code>):</strong> used exclusively when you tap "Choose from contacts" to import the name and phone number of the single contact you select via the Android system picker. Your entire address book is never read in the background or sent externally.</li>
+        <li><strong>Notifications and alarms/reminders (<code>POST_NOTIFICATIONS</code>, <code>SCHEDULE_EXACT_ALARM</code>, <code>RECEIVE_BOOT_COMPLETED</code>):</strong> used to deliver local reminders scheduled by you and restore them after a device reboot.</li>
+        <li><strong>Internet access and foreground services (<code>INTERNET</code>, <code>FOREGROUND_SERVICE_DATA_SYNC</code>):</strong> used to download the AI model onto your device and retrieve external cultural/informational content.</li>
+      </ul>
+
+      <h2>4. Third-Party Services and Proxy Infrastructure</h2>
+      <p>
+        Although Un Passo never transmits your personal content (reflections, mood logs, photos, AI chats, or contacts) to external servers, the app performs encrypted network requests (HTTPS) via stateless proxy servers (Cloudflare Workers, which use temporary caching strictly for aggregated public responses containing no user data) and public APIs to provide supplementary features. During these requests, temporary technical data required for connection (such as your IP address) is processed:
+      </p>
+      <ul>
+        <li><strong>AI Model Download (Cloudflare R2 / Workers):</strong> used strictly at your request to download the artificial intelligence model files locally onto your device (<a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">Cloudflare Privacy Policy</a>).</li>
+        <li><strong>Local Events (Ticketmaster API via proxy):</strong> receives only the city name (e.g., "Rome") to return upcoming events (<a href="https://privacy.ticketmaster.com/" target="_blank" rel="noopener noreferrer">Ticketmaster Privacy Policy</a>).</li>
+        <li><strong>Music Discovery (YouTube Data API and Last.fm API via proxy):</strong> receive only the selected music genres or searched artist name and the current date to suggest tracks and playlists (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>; <a href="https://www.last.fm/legal/privacy" target="_blank" rel="noopener noreferrer">Last.fm Privacy Policy</a>).</li>
+        <li><strong>Image of the Day (Unsplash API via proxy):</strong> receives only a generic search theme and the current date to display an inspirational image (<a href="https://unsplash.com/privacy" target="_blank" rel="noopener noreferrer">Unsplash Privacy Policy</a>).</li>
+        <li><strong>On This Day Facts (Wikimedia / Wikipedia API):</strong> receives only the current day and month to display a historical fact of the day (<a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" target="_blank" rel="noopener noreferrer">Wikimedia Privacy Policy</a>).</li>
+      </ul>
+      <p>
+        When you initiate a call to a trusted contact or share an image, the app uses standard Android system tools (the phone dialer or system share sheet).
+      </p>
+
+      <h2>5. No Advertising, Analytics, or Profiling</h2>
+      <p>
+        Un Passo <strong>does not sell</strong> or share any user data with third parties. The application does not integrate advertising SDKs (e.g., AdMob), does not read Advertising IDs, and does not use third-party behavioral tracking, analytics, or crash reporting tools.
+      </p>
+
+      <h2>6. Data Retention and Deletion</h2>
+      <p>
+        All data is stored exclusively on your device until you decide to delete it. You can erase your data at any time:
+      </p>
+      <ul>
+        <li>By deleting individual items (reflections, memories, trusted contacts, future plans, saved events) directly inside the app.</li>
+        <li>By removing the downloaded AI model from the app's Settings (<em>"Remove AI model"</em>).</li>
+        <li>By clearing all app data from Android system settings (<em>Settings > Apps > Un Passo > Storage > Clear data</em>) or uninstalling the application, which permanently removes all local files.</li>
+      </ul>
+
+      <h2>7. Children's Privacy</h2>
+      <p>
+        The application is not intended for children under the age of 13 (or the minimum age required by applicable law in your country) and does not knowingly collect personal data from children.
+      </p>
+
+      <h2>8. Changes to This Privacy Policy</h2>
+      <p>
+        Any updates to this Privacy Policy will be published on this page with the updated revision date.
+      </p>
+    </div>
   </div>
+
+  <script>
+    function setLang(lang) {
+      const itContent = document.getElementById('content-it');
+      const enContent = document.getElementById('content-en');
+      const btnIt = document.getElementById('btn-it');
+      const btnEn = document.getElementById('btn-en');
+      const title = document.getElementById('page-title');
+      const updated = document.getElementById('page-updated');
+
+      if (lang === 'en') {
+        itContent.classList.add('hidden');
+        enContent.classList.remove('hidden');
+        btnEn.classList.add('active');
+        btnIt.classList.remove('active');
+        title.textContent = 'Privacy Policy – Un Passo';
+        updated.textContent = 'Last updated: November 2026';
+        document.documentElement.lang = 'en';
+      } else {
+        enContent.classList.add('hidden');
+        itContent.classList.remove('hidden');
+        btnIt.classList.add('active');
+        btnEn.classList.remove('active');
+        title.textContent = 'Informativa sulla Privacy – Un Passo';
+        updated.textContent = 'Ultimo aggiornamento: Novembre 2026';
+        document.documentElement.lang = 'it';
+      }
+    }
+
+    // Imposta automaticamente l'inglese se la lingua del browser non è l'italiano
+    if (navigator.language && !navigator.language.toLowerCase().startsWith('it')) {
+      setLang('en');
+    }
+  </script>
 </body>
 </html>
